@@ -3,11 +3,16 @@ import {HardhatUserConfig} from 'hardhat/types';
 import 'hardhat-deploy';
 import 'hardhat-deploy-ethers';
 import 'hardhat-gas-reporter';
+import "@nomiclabs/hardhat-etherscan";
 import {node_url, accounts} from './utils/network';
+
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: '0.7.1',
+    version: '0.8.0',
+  },
+  etherscan: {
+    apiKey: process.env["ETHERSCAN_API_KEY"],
   },
   namedAccounts: {
     deployer: 0,
@@ -27,6 +32,10 @@ const config: HardhatUserConfig = {
     rinkeby: {
       url: node_url('rinkeby'),
       accounts: accounts('rinkeby'),
+    },
+    ropsten: {
+      url: node_url('ropsten'),
+      accounts: accounts('ropsten'),
     },
     kovan: {
       url: node_url('kovan'),
